@@ -85,7 +85,9 @@ module.exports = (env, argv) => {
           {
             preset: 'webp', // ?as=webp -> 사진형, 애니메이션형 이미지에 사용
             implementation: ImageMinimizerPlugin.sharpGenerate,
-            options: { encodeOptions: { webp: { quality: 80 } } }
+            // effort: 탐색 강도(0~6). 빌드 시간을 더 쓰는 대신 같은 화질을 더 작게 압축한다.
+            // encodeOptions의 preset: 인코더를 사진 특성에 맞게 튜닝 (위의 preset과는 다른 옵션)
+            options: { encodeOptions: { webp: { quality: 75, effort: 6, preset: 'photo' } } }
           },
           {
             preset: 'webp-lossless', // ?as=webp-lossless -> 그래픽형 이미지에 사용
